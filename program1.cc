@@ -22,8 +22,10 @@ void GetName (ifstream &infp, char &curch, bool &eofile, namestring &str)
     }
   if(str.size() > 8)
     {
+      cout << "WARNING: name \"" << str << "\" has been truncated"
+	" to 8 characters." << endl;
       str.erase(str.begin() + 8, str.end());
-      cout << "WARNING: Name is longer than 8 characters." << endl;
+
     }
 }
 

@@ -8,18 +8,16 @@ using namespace std;
 void GetNumber (ifstream &infp, char &curch, bool &eofile, int &number)
 {
   bool _digit = isdigit(curch);
-  int i = 1;
+  int i = 10;
   if (!_digit)
     {
       cout << "Not a digit." << endl;
       exit(1);
     }
-  infp.get(curch);
 
   while (!eofile && _digit)
     {
       number = number * i + atoi(&curch);
-      i = i * 10;
       eofile = (infp.get(curch) == 0);
       _digit = isdigit (curch) != 0;
     }
@@ -68,19 +66,20 @@ int main (int argc, char *argv[])
     }
 
   eofile = (inf.get(ch) == 0);
-  int number =0;
+  int number = 0;
   while (!eofile)
     {
-      //if (isspace (ch))
       if (isdigit(ch))
 	{
-	  //SkipSpaces (inf, ch, eofile);
 	  GetNumber (inf, ch, eofile, number);
 	  cout << number;
+	  number = 0;
 	}
       else
-	cout << number;
-      eofile = (inf.get(ch) == 0);
+	{
+	  cout << " ";
+	  eofile = (inf.get(ch) == 0);
+	}
     }
   cout << endl;
 

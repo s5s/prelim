@@ -5,6 +5,28 @@
 
 using namespace std;
 
+const int maxlength = 8;
+typedef string namestring;
+
+void GetName (ifstream &infp, char &curch, bool &eofile, namestring &str)
+{
+  if (!isalpha(curch))
+    {
+      cout << "Not a letter." << endl;
+      exit(1);
+    }
+  while (!eofile && isalnum(curch))
+    {
+      str += curch;
+      eofile = (infp.get(curch) == 0);
+    }
+  if(str.size() > 8)
+    {
+      str.erase(str.begin() + 8, str.end());
+      cout << "WARNING: Name is longer than 8 characters." << endl;
+    }
+}
+
 void GetNumber (ifstream &infp, char &curch, bool &eofile, int &number)
 {
   bool _digit = isdigit(curch);
@@ -29,7 +51,7 @@ void SkipSpaces (ifstream &infp, char &curch, bool &eofile)
   bool _space;
   _space = isspace (curch) != 0;
 
-  if (!_space) //Exit if curch is not a white space
+  if (!_space)
     {
       cout << "Not a white space." << endl;
       exit (1);
@@ -66,18 +88,18 @@ int main (int argc, char *argv[])
     }
 
   eofile = (inf.get(ch) == 0);
-  int number = 0;
+  namestring str;
   while (!eofile)
     {
-      if (isdigit(ch))
+      if (isalpha(ch))
 	{
-	  GetNumber (inf, ch, eofile, number);
-	  cout << number;
-	  number = 0;
+	  GetName (inf, ch, eofile, str);
+	  cout << str;
+	  str.clear();
 	}
       else
 	{
-	  cout << " ";
+	  cout << endl;
 	  eofile = (inf.get(ch) == 0);
 	}
     }

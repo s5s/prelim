@@ -90,14 +90,29 @@ int main (int argc, char *argv[])
     }
 
   eofile = (inf.get(ch) == 0);
+  int number = 0;
   namestring str;
   while (!eofile)
     {
-      if (isalpha(ch))
+      if (isalnum(ch))
 	{
-	  GetName (inf, ch, eofile, str);
-	  cout << str;
-	  str.clear();
+	  if (isalpha(ch))
+	    {
+	      GetName (inf, ch, eofile, str);
+	      cout << str;
+	      str.clear();
+	    }
+	  else if(isdigit(ch))
+	    {
+	      GetNumber (inf, ch, eofile, number);
+	      cout << number;
+	      number = 0;
+	    }
+	}
+      else if (isspace(ch))
+	{
+	  SkipSpaces (inf, ch, eofile);
+	  cout << endl;
 	}
       else
 	{

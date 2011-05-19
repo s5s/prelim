@@ -37,6 +37,11 @@ void NameTable::RemoveName (Name *name)
 
 Value NameTable::LookupName (Name name)
 {
+  map<Name, Value,Compare>::iterator it;
+  it = nameTable.find (name);
+  /* Name is not present in table */
+  if (it == nameTable.end())
+    InsertName (name);
   return nameTable[name];
 }
 
@@ -45,10 +50,5 @@ Value NameTable::LookupName (namestring str)
   /* Since the map has Names as value first create the Name
    * and then look for that object */
   Name name (str);
-  map<Name, Value,Compare>::iterator it;
-  it = nameTable.find (name);
-  /* Name is not present in table */
-  if (it == nameTable.end())
-    InsertName (name);
   return LookupName (name);
 }

@@ -33,7 +33,7 @@ name NameTable::LookupName (Name name)
   return nameTable[name];
 }
 
-name NameTable::LookupName (Name *name)
+Value NameTable::LookupName (Name *name)
 {
   return LookupName (*name);
 }

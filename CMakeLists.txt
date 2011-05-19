@@ -29,6 +29,7 @@ endif()
 #endif()
 #set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BUILD_DIR})
 
-set (PRELIM_SRC program1.cc)
+set (PRELIM_SRC program1.cc name.cc nametable.cc)
 add_executable (program1 ${PRELIM_SRC})
-
+set (TESTING_SRC testing.cc name.cc nametable.cc)
+add_executable (testing ${TESTING_SRC})

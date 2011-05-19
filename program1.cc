@@ -4,9 +4,9 @@
 #include <cctype>
 
 #include "namestring.h"
+#include "nametable.h"
 
 using namespace std;
-
 
 void GetName (ifstream &infp, char &curch, bool &eofile, namestring &str)
 {
@@ -22,10 +22,7 @@ void GetName (ifstream &infp, char &curch, bool &eofile, namestring &str)
     }
   if(str.size() > 8)
     {
-      cout << "WARNING: name \"" << str << "\" has been truncated"
-	" to 8 characters." << endl;
       str.erase(str.begin() + 8, str.end());
-
     }
 }
 
@@ -92,6 +89,7 @@ int main (int argc, char *argv[])
   eofile = (inf.get(ch) == 0);
   int number = 0;
   namestring str;
+  NameTable nametable;
   while (!eofile)
     {
       if (isalnum(ch))
@@ -99,7 +97,7 @@ int main (int argc, char *argv[])
 	  if (isalpha(ch))
 	    {
 	      GetName (inf, ch, eofile, str);
-	      cout << str;
+	      nametable.InsertName (str);
 	      str.clear();
 	    }
 	  else if(isdigit(ch))
@@ -112,14 +110,15 @@ int main (int argc, char *argv[])
       else if (isspace(ch))
 	{
 	  SkipSpaces (inf, ch, eofile);
-	  cout << endl;
+	  //cout << endl;
 	}
       else
 	{
-	  cout << endl;
+	  //cout << endl;
 	  eofile = (inf.get(ch) == 0);
 	}
     }
+  nametable.PrintTable ();
   cout << endl;
 
   inf.close();

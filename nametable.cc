@@ -62,3 +62,8 @@ void NameTable::PrintTable () const
   for (it=nameTable.begin(); it != nameTable.end(); it++)
     cout << (*it).first.Get() << "    " << (*it).second << endl;
 }
+
+void NameTable::WriteName (Name name) const
+{
+  cout << name.Get();
+}

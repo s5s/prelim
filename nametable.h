@@ -28,6 +28,7 @@ class Compare
     Value LookupName (Name name);
     Value LookupName (namestring str);
     void PrintTable () const;
+    void WriteName (Name name) const;
   };
 
 #endif // NAMETABLE_H

@@ -14,7 +14,6 @@ void NameTable::InsertName (Name name, Value val /*= 0*/)
 {
   /* Simulate the behaviour of array indexing */
   val = nameTable.size();
-  nameTable[name];
   nameTable[name] = val;
 }
 
@@ -46,5 +45,10 @@ Value NameTable::LookupName (namestring str)
   /* Since the map has Names as value first create the Name
    * and then look for that object */
   Name name (str);
+  map<Name, Value,Compare>::iterator it;
+  it = nameTable.find (name);
+  /* Name is not present in table */
+  if (it == nameTable.end())
+    InsertName (name);
   return LookupName (name);
 }

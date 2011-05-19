@@ -2,6 +2,12 @@
 
 using namespace std;
 
+ostream& operator<<(ostream& output, const Name& n)
+{
+  output << n.Get ();
+  return output;
+}
+
 Name::Name () : maxlength (8) {}
 
 Name::Name (namestring str) : maxlength (8)

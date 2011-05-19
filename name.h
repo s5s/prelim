@@ -1,10 +1,12 @@
 #ifndef NAME_H
 #define NAME_H
 
+#include <iostream>
 #include "namestring.h"
 
 class Name
 {
+  friend std::ostream& operator<<(std::ostream& output, const Name& n);
  private:
   const unsigned maxlength;
   namestring name;

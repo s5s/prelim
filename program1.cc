@@ -8,7 +8,9 @@
 
 using namespace std;
 
-void GetName (ifstream &infp, char &curch, bool &eofile, namestring &str)
+NameTable nametable;
+
+Name GetName (ifstream &infp, char &curch, bool &eofile, namestring &str)
 {
   if (!isalpha(curch))
     {
@@ -20,10 +22,8 @@ void GetName (ifstream &infp, char &curch, bool &eofile, namestring &str)
       str += curch;
       eofile = (infp.get(curch) == 0);
     }
-  if(str.size() > 8)
-    {
-      str.erase(str.begin() + 8, str.end());
-    }
+  Name id (str);
+  return id;
 }
 
 void GetNumber (ifstream &infp, char &curch, bool &eofile, int &number)
@@ -89,7 +89,6 @@ int main (int argc, char *argv[])
   eofile = (inf.get(ch) == 0);
   int number = 0;
   namestring str;
-  NameTable nametable;
   while (!eofile)
     {
       if (isalnum(ch))

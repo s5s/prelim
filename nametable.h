@@ -3,6 +3,7 @@
 
 #include <map>
 #include <string>
+#include <iostream>
 #include "namestring.h"
 #include "name.h"
 
@@ -26,6 +27,7 @@ class Compare
     void RemoveName (Name *name);
     Value LookupName (Name name);
     Value LookupName (namestring str);
+    void PrintTable () const;
   };
 
 #endif // NAMETABLE_H

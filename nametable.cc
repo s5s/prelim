@@ -52,3 +52,13 @@ Value NameTable::LookupName (namestring str)
   Name name (str);
   return LookupName (name);
 }
+
+void NameTable::PrintTable () const
+{
+  cout << "Table contents:" << endl;
+  cout << "Key       Value" << endl;
+  map<Name, Value,Compare>::const_iterator it;
+
+  for (it=nameTable.begin(); it != nameTable.end(); it++)
+    cout << (*it).first.Get() << "    " << (*it).second << endl;
+}

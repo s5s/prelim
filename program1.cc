@@ -3,10 +3,10 @@
 #include <cstdlib>
 #include <cctype>
 
+#include "namestring.h"
+
 using namespace std;
 
-const int maxlength = 8;
-typedef string namestring;
 
 void GetName (ifstream &infp, char &curch, bool &eofile, namestring &str)
 {

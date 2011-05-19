@@ -2,6 +2,11 @@
 
 using namespace std;
 
+bool Compare::operator() (const Name &thisName, const Name &otherName) const
+{
+  return thisName.Get().compare(otherName.Get()) < 0;
+}
+
 /* operator[] - inserts an element or overwrites existing one
  * insert() - inserts an element but does nothing if element already exists
  */
@@ -13,9 +18,12 @@ void NameTable::InsertName (Name name, Value val /*= 0*/)
   nameTable[name] = val;
 }
 
-void NameTable::InsertName (Name *name, Value val)
+void NameTable::InsertName (namestring str, Value val)
 {
-  InsertName(*name, val);
+  /* Since the map has Names as value first create the Name
+   * and then look for that object */
+  Name name (str);
+  InsertName (name);
 }
 
 void NameTable::RemoveName (Name name)
@@ -28,12 +36,15 @@ void NameTable::RemoveName (Name *name)
   RemoveName(*name);
 }
 
-name NameTable::LookupName (Name name)
+Value NameTable::LookupName (Name name)
 {
   return nameTable[name];
 }
 
-Value NameTable::LookupName (Name *name)
+Value NameTable::LookupName (namestring str)
 {
-  return LookupName (*name);
+  /* Since the map has Names as value first create the Name
+   * and then look for that object */
+  Name name (str);
+  return LookupName (name);
 }

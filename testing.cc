@@ -7,9 +7,12 @@ using namespace std;
 int main(int argc, char *argv[])
 {
   NameTable nt;
+  //namestring str = "SimeonSimeonov";
   nt.InsertName("SimeonSimeonov");
+  nt.InsertName ("MaryanaSimeonova");
+  nt.InsertName ("VasilLevski");
 
-  //  cout << nt.Lookup("SimeonSimeonov") << endl;
+  cout << nt.LookupName("VasilLevski") << endl;
 
   return 0;
 }

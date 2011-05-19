@@ -43,3 +43,8 @@ void Name::Set (namestring *strp)
 {
   name = FormatName(*strp);
 }
+
+length Name::NameLength ()
+{
+  return name.size();
+}

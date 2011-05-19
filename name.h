@@ -4,6 +4,8 @@
 #include <iostream>
 #include "namestring.h"
 
+typedef unsigned length;
+
 class Name
 {
   friend std::ostream& operator<<(std::ostream& output, const Name& n);
@@ -18,6 +20,7 @@ class Name
   namestring Get () const;
   void Set (namestring str);
   void Set (namestring *strp);
+  length NameLength ();
 };
 
 #endif //NAME_H

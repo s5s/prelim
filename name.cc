@@ -48,3 +48,8 @@ length Name::NameLength ()
 {
   return name.size();
 }
+
+void Name::operator= (const Name& name)
+{
+  Set (name.Get());
+}

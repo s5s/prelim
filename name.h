@@ -21,6 +21,7 @@ class Name
   void Set (namestring str);
   void Set (namestring *strp);
   length NameLength ();
+  void operator= (const Name& rhs);
 };
 
 #endif //NAME_H

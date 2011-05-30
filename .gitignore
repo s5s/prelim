@@ -2,3 +2,4 @@
 !.gitignore
 !*.cc
 !*.h
+!gpl-3.0.txt
